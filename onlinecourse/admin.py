@@ -17,14 +17,6 @@ class CourseAdmin(admin.ModelAdmin):
     list_filter = ['pub_date']
     search_fields = ['name', 'description']
 
-class QuestionAdmin(admin.ModelAdmin):
-    inlines = [ChoiceInline]
-    list_display = ['content']
-
-class LessonAdmin(admin.ModelAdmin):
-    list_display = ['title']
-
-
 class ChoiceInline(admin.StackedInline):
     model = Choice
     extra = 2
@@ -34,6 +26,12 @@ class QuestionInline(admin.StackedInline):
     extra = 2
 # <HINT> Register Question and Choice models here
 
+class QuestionAdmin(admin.ModelAdmin):
+    inlines = [ChoiceInline]
+    list_display = ['content']
+
+class LessonAdmin(admin.ModelAdmin):
+    list_display = ['title']
 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson, LessonAdmin)
